@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 
 jest.mock('node-fetch', () => jest.fn());
 
+jest.useFakeTimers({now: new Date('2025-01-01')});
 
 describe('notifyUser', () => {
     it('calls fetch with correct url, method and payload', async () => {
@@ -12,7 +13,7 @@ describe('notifyUser', () => {
         const fetchSpy = jest.mocked(fetch);
         const payload = {
             message,
-            timestamp: new Date().toISOString(),
+            timestamp: new Date('2025-01-01')
           };
         fetchSpy.mockResolvedValue({ ok: true} as any);
 
